@@ -12,7 +12,6 @@ def randmat(r, c, dtype='int'):
         return [[random.random() * 100 for j in range(c)] for i in range(r)]
     raise ValueError("Invalid dtype. Must be 'int' or 'double'.")
 
-# Fastest singlethreaded implementation based on testing.
 def matmul(A, B, mt=True):
     if mt == True:
         return matmul_mt(A, B)

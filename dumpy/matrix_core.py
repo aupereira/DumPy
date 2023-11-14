@@ -31,6 +31,8 @@ def scalar_vector_mul(A, B):
 #         output.append(sum)
 #     return output
 
+# Yes, this DOES contain for loops, and those for loops are way faster than
+# generator objects. Deal with it.
 def matmul_core(A, B, list=None):
     res = []
     for r in range(len(A)):
@@ -44,41 +46,3 @@ def matmul_core(A, B, list=None):
     if list == None:
         return res
     list.extend(res)
-
-# import unittest
-# from dumpy.matrix_st import scalar_mul, scalar_vector_mul, vector_vector_mul, vector_matrix_mul, matrix_vector_mul, matmul_thread
-
-# class TestMatrix(unittest.TestCase):
-    
-#     def test_scalar_mul(self):
-#         self.assertEqual(scalar_mul(2, 3), 6)
-#         self.assertEqual(scalar_mul(0, 5), 0)
-#         self.assertEqual(scalar_mul(-1, 4), -4)
-        
-#     def test_scalar_vector_mul(self):
-#         self.assertEqual(scalar_vector_mul(2, [1, 2, 3]), [2, 4, 6])
-#         self.assertEqual(scalar_vector_mul(0, [1, 2, 3]), [0, 0, 0])
-#         self.assertEqual(scalar_vector_mul(-1, [1, 2, 3]), [-1, -2, -3])
-        
-#     # def test_vector_vector_mul(self):
-#     #     self.assertEqual(vector_vector_mul([1, 2, 3], [4, 5, 6]), 32)
-#     #     self.assertEqual(vector_vector_mul([0, 1, 0], [1, 0, 1]), 0)
-#     #     self.assertEqual(vector_vector_mul([-1, 2, -3], [4, -5, 6]), 0)
-        
-#     # def test_vector_matrix_mul(self):
-#     #     self.assertEqual(vector_matrix_mul([1, 2, 3], [[4, 5], [6, 7], [8, 9]]), [40, 47])
-#     #     self.assertEqual(vector_matrix_mul([0, 0, 0], [[1, 2], [3, 4], [5, 6]]), [0, 0])
-#     #     self.assertEqual(vector_matrix_mul([1, 1, 1], [[-1, 2], [3, -4], [-5, 6]]), [-2, -1])
-        
-#     # def test_matrix_vector_mul(self):
-#     #     self.assertEqual(matrix_vector_mul([[1, 2], [3, 4], [5, 6]], [1, 2]), [5, 11, 17])
-#     #     self.assertEqual(matrix_vector_mul([[0, 0], [0, 0], [0, 0]], [1, 2]), [0, 0, 0])
-#     #     self.assertEqual(matrix_vector_mul([[-1, 2], [3, -4], [-5, 6]], [1, 1]), [-1, -1, -1])
-        
-#     def test_matmul_thread(self):
-#         self.assertEqual(matmul_core([[1, 2], [3, 4]], [[5, 6], [7, 8]]), [[19, 22], [43, 50]])
-#         self.assertEqual(matmul_core([[0, 0], [0, 0]], [[1, 2], [3, 4]]), [[0, 0], [0, 0]])
-#         self.assertEqual(matmul_core([[-1, 2], [3, -4]], [[1, 1], [1, 1]]), [[1, 1], [-1, -1]])
-        
-# if __name__ == '__main__':
-#     unittest.main()

@@ -1,5 +1,5 @@
 import multiprocessing as mp
-from matrix_core import matmul_core
+from dumpy.matrix_core import matmul_core
 
 def matmul_mt(A, B):
     len_A = len(A)
