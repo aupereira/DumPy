@@ -33,4 +33,4 @@ def matmul_mt(A, B):
     for i in range(len(processes)):
         processes[i].join()
     
-    return res
+    return list(res)
