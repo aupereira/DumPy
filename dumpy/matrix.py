@@ -4,6 +4,10 @@ import random
 from dumpy.matrix_core import matmul_core
 from dumpy.matrix_mp import matmul_mt
 
+def flipmat(A):
+    """Flips a matrix."""
+    return [list(i) for i in zip(*A)]
+
 def randmat(r, c, dtype='int'):
     """Returns a random integer matrix of size r x c. Can choose int or double."""
     if dtype == 'int':

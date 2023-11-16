@@ -1,28 +1,28 @@
 def scalar_mul(A, B):
     return A * B
 
-def scalar_vector_mul(A, B):
+def scalar_vec_mul(A, B):
     output = []
     for i in range(len(B)):
         output.append(A * B[i])
     return output
 
-# def vector_vector_mul(A, B):
-#     output = 0
-#     for i in range(len(A)):
-#         output += A[i] * B[i]
-#     return output
+def vec_vec_mul(A, B):
+    output = 0
+    for i in range(len(A)):
+        output += A[i] * B[i]
+    return output
 
-# def vector_matrix_mul(A, B):
-#     output = []
-#     for r in range(len(B[0])):
-#         sum = 0
-#         for c in range(len(A)):
-#             sum += A[c] * B[c][r]
-#         output.append(sum)
-#     return output
+def vec_mat_mul(A, B):
+    output = []
+    for i in range(len(B[0])):
+        sum = 0
+        for j in range(len(A)):
+            sum += A[j] * B[j][i]
+        output.append(sum)
+    return output
 
-# def matrix_vector_mul(A, B):
+# def mat_vec_mul(A, B):
 #     output = []
 #     for r in range(len(A)):
 #         sum = 0
@@ -46,3 +46,9 @@ def matmul_core(A, B, list=None):
     if list == None:
         return res
     list.extend(res)
+
+# def tensor_product(A, B):
+#     output = []
+#     for i in range(len(A)):
+#         output.append(scalar_vector_mul(A[i], B))
+#     return output
