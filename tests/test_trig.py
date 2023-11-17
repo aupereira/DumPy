@@ -1,5 +1,5 @@
 import unittest
-from dumpy.trig import taylor_sin
+from dumpy.trig.trig import taylor_sin
 import math
 
 class TestTrig(unittest.TestCase):

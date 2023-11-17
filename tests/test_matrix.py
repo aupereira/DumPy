@@ -1,5 +1,5 @@
 import unittest
-from dumpy.matrix import randmat, matmul
+from dumpy.linalg.matrix import randmat, matmul
 
 class TestMatrix(unittest.TestCase):
     def test_randmat(self):

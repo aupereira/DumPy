@@ -1,2 +1,3 @@
-from .matrix import randmat, matmul
-from .trig import *
+from dumpy.fft import *
+from dumpy.linalg import *
+from dumpy.trig import *

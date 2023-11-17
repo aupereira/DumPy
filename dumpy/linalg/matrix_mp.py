@@ -1,5 +1,5 @@
 import multiprocessing as mp
-from dumpy.matrix_core import matmul_core
+from .matrix_core import matmul_core
 
 def matmul_mt(A, B):
     len_A = len(A)
@@ -23,7 +23,11 @@ def matmul_mt(A, B):
 
     if len_A > threads:
         for i in range(0,threads):
-            processes.append(mp.Process(target=matmul_core, args=(A[thread_indexes[i]:thread_indexes[i+1]], B, res)))
+            processes.append(mp.Process(
+                target=matmul_core, args=(
+                    A[thread_indexes[i]:thread_indexes[i+1]], B, res
+                )
+            ))
             processes[i].start()
     else:
         for i in range(0,len_A):
