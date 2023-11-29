@@ -31,9 +31,8 @@ def vec_mat_mul(A, B):
 #         output.append(sum)
 #     return output
 
-# Yes, this DOES contain for loops, and those for loops are way faster than
-# generator objects. Deal with it.
-def matmul_core(A, B, list=None):
+def matmul_core_old(A, B, list=None):
+    """Performs a matrix multiplication on two matrices."""
     res = []
     for r in range(len(A)):
         row = []
@@ -41,6 +40,22 @@ def matmul_core(A, B, list=None):
             sum = 0
             for i in range(len(A[0])):
                 sum += A[r][i] * B[i][c]
+            row.append(sum)
+        res.append(row)
+    if list == None:
+        return res
+    list.extend(res)
+
+def matmul_core(A, B, list=None):
+    """Performs a matrix multiplication on two matrices.
+    \nExploits spatial locality by transposing the second matrix."""
+    res = []
+    for i in range(len(A)):
+        row = []
+        for j in range(len(B)):
+            sum = 0
+            for k in range(len(A[0])):
+                sum += A[i][k] * B[j][k]
             row.append(sum)
         res.append(row)
     if list == None:

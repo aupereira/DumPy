@@ -8,7 +8,7 @@
 # Maybe tensor operations.
 
 import random
-from .matrix_core import matmul_core
+from .matrix_core import matmul_core, matmul_core_old
 from .matrix_mp import matmul_mt
 
 def flipmat(A):
@@ -31,8 +31,9 @@ def randmat(r, c, dtype='int'):
         return [[random.random() * 100 for j in range(c)] for i in range(r)]
     raise ValueError("Invalid dtype. Must be 'int' or 'double'.")
 
-def matmul(A, B, mt=True):
+def matmul(A, B, mt=True, flip=True):
     if mt == True:
-        return matmul_mt(A, B)
-    else:
-        return matmul_core(A, B)
+        return matmul_mt(A, flipmat(B))
+    elif flip == True:
+        return matmul_core(A, flipmat(B))
+    return matmul_core_old(A, B)
