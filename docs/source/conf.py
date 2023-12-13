@@ -38,5 +38,6 @@ latex_elements = {
     'pointsize': '10pt',
     'preamble': '',
     'tableofcontents': '',
+    'printindex': '\\relax'
 }
 latex_domain_indices = False
