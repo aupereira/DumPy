@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 project = 'DumPy'
 copyright = '2023, Aurora Pereira'
 author = 'Aurora Pereira'
-release = '0.1.0a'
+release = '0.1.0_a1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -32,3 +32,11 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+latex_elements = {
+    'papersize': 'letterpaper',
+    'pointsize': '10pt',
+    'preamble': '',
+    'tableofcontents': '',
+}
+latex_domain_indices = False
