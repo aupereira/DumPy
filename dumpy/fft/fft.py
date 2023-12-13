@@ -1,7 +1,3 @@
-# To-Do
-# Add checks to pad out the FFT to size n^2.
-# Multithreading.
-
 import cmath, math
 
 type Vec_Complex = list[complex or float or int]
@@ -10,11 +6,17 @@ def fft(x: Vec_Complex) -> Vec_Complex:
     """Radix-2 DIT FFT using list comprehension.
 
     Args:
-        x (Vec_Complex): The input vector of real or complex numbers.
+        x (Vec_Complex): The input vector of real or complex numbers. Must have a length that is a power of 2.
 
     Returns:
         Vec_Complex: The output vector after performing the FFT.
+
+    Raises:
+        ValueError: The length of the input vector is not a power of 2.
     """
+
+    if len(x) & (len(x) - 1) != 0:
+        raise ValueError("The length of the input vector must be a power of 2.")
 
     N = len(x)
     if N <= 1:
@@ -28,12 +30,18 @@ def fft_for(x: Vec_Complex) -> Vec_Complex:
     """Radix-2 DIT FFT using for loops.
 
     Args:
-        x (Vec_Complex): The input vector of real or complex numbers.
+        x (Vec_Complex): The input vector of real or complex numbers. Must have a length that is a power of 2.
 
     Returns:
         Vec_Complex: The output vector after performing the FFT.
+
+    Raises:
+        ValueError: The length of the input vector is not a power of 2.
     """
-    
+
+    if len(x) & (len(x) - 1) != 0:
+        raise ValueError("The length of the input vector must be a power of 2.")
+
     N = len(x)
     if N <= 1:
         return x
