@@ -8,7 +8,7 @@ def outer(v1, v2):
     if l1 != l2:
         raise ValueError("Vectors must be of same length.")
 
-    out = [[None] * l1] * l1
+    out = [[None] * l1 for _ in range(l1)]
 
     for i in range(l1):
         for j in range(l1):

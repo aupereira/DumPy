@@ -1,1 +1,1 @@
-from .fft import radix2_fft, radix2_fft_lc
+from .fft import fft

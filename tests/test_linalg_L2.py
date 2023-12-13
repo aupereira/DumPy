@@ -1,7 +1,7 @@
 import unittest
 from dumpy.linalg.L2 import outer, mvmul
 
-class TestLinalg(unittest.TestCase):
+class TestLinalgL2(unittest.TestCase):
     def test_outer(self):
         # Test that outer returns the correct result for some vectors
         self.assertEqual(outer([1, 2, 3], [4, 5, 6]), [[4, 5, 6], [8, 10, 12], [12, 15, 18]])
@@ -14,7 +14,6 @@ class TestLinalg(unittest.TestCase):
         with self.assertRaises(ValueError):
             outer([1, 2, 3], [4, 5])
 
-class TestLinalg(unittest.TestCase):
     def test_mvmul(self):
         # Test that mvmul returns the correct result for some matrices and vectors
         self.assertEqual(mvmul([[1, 2, 3], [4, 5, 6]], [1, 2, 3]), [[14], [32]])

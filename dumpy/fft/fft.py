@@ -1,20 +1,21 @@
 # To-Do
 # Add checks to pad out the FFT to size n^2.
 # Multithreading.
-# Add my own cmath implementation.
 
 import cmath, math
 
-def radix2_fft_lc(x):
+def fft(x):
+    """Radix-2 DIT FFT using list comprehension."""
     N = len(x)
     if N <= 1:
         return x
-    even = radix2_fft_lc(x[0::2])
-    odd = radix2_fft_lc(x[1::2])
+    even = fft(x[0::2])
+    odd = fft(x[1::2])
     T = [cmath.exp(-2j * math.pi * k / N) * odd[k] for k in range(N // 2)]
     return [even[k] + T[k] for k in range(N // 2)] + [even[k] - T[k] for k in range(N // 2)]
 
 def radix2_fft(x):
+    """Radix-2 DIT FFT using for loops."""
     N = len(x)
     if N <= 1:
         return x

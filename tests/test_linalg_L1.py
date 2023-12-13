@@ -4,7 +4,7 @@ import unittest
 from dumpy.linalg.L1 import inner, norm
 import math
 
-class TestLinalg(unittest.TestCase):
+class TestLinalgL1(unittest.TestCase):
     def test_inner(self):
         # Test that inner returns the correct result for some vectors
         self.assertEqual(inner([1, 2, 3], [4, 5, 6]), 32)
@@ -19,7 +19,6 @@ class TestLinalg(unittest.TestCase):
         # Test that inner returns the square of the norm for a vector with itself
         self.assertEqual(inner([1, 2, 3], [1, 2, 3]), 14)
 
-class TestLinalg(unittest.TestCase):
     def test_norm(self):
         # Test that norm returns the correct result for some vectors
         self.assertEqual(norm([3, 4]), 5)  # 2-norm

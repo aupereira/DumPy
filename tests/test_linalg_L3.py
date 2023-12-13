@@ -1,7 +1,7 @@
 import unittest
 from dumpy.linalg.L3 import transpose, identity, matadd, matsub, matmul
 
-class TestLinalg(unittest.TestCase):
+class TestLinalgL3(unittest.TestCase):
     def test_transpose(self):
         # Test that transpose returns the correct result for a 2x2 matrix
         self.assertEqual(transpose([[1, 2], [3, 4]]), [[1, 3], [2, 4]])
