@@ -8,9 +8,9 @@ authors = [
     {name = "Aurora Pereira", email = "aupereira@umass.edu"}
 ]
 description = "A basic library written in pure Python that implements some basic math functions built from scratch. The library also includes scheduling logic for multithreaded matrix operations."
-# license = ""
+# license = "MIT"
 classifiers = [
     "Programming Language :: Python :: 3"
 ]
 dependencies = []
-version = "1.0.0a"
+version = "0.1.0a"
