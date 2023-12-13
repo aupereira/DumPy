@@ -1,5 +1,6 @@
 from time import perf_counter
-from .matrix import matmul, randmat
+from .L3 import matmul
+from .rand import randmat
 
 def time_func(func,*args):
     t1 = perf_counter()
