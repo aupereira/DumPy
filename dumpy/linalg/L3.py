@@ -2,19 +2,46 @@
 
 import multiprocessing as mp
 
-def transpose(A):
-    """Flips a matrix."""
+type Matrix = list[list[float or int]]
+
+def transpose(A: Matrix) -> Matrix:
+    """Transposes a matrix.
+
+    Args:
+        A (Matrix): The matrix to be transposed.
+
+    Returns:
+        Matrix: The transposed matrix.
+    """
+
     return [list(i) for i in zip(*A)]
 
-def identity(n):
-    """Returns an identity matrix of size n x n."""
+def identity(n: int) -> Matrix:
+    """Returns an identity matrix of size n x n.
+
+    Parameters:
+        n (int): The size of the identity matrix.
+
+    Returns:
+        Matrix: The identity matrix of size n x n.
+    """
+
     A = [[0]*n for _ in range(n)]
     for i in range(n):
         A[i][i] = 1
     return A
 
-def matadd(A, B):
-    """Adds two matrices."""
+def matadd(A: Matrix, B: Matrix) -> Matrix:
+    """Adds two matrices.
+
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix.
+
+    Returns:
+        Matrix: The resulting matrix after adding A and B.
+    """
+
     res = []
     for i in range(len(A)):
         row = []
@@ -23,8 +50,17 @@ def matadd(A, B):
         res.append(row)
     return res
 
-def matsub(A, B):
-    """Subtracts two matrices."""
+def matsub(A: Matrix, B: Matrix) -> Matrix:
+    """Subtracts two matrices.
+
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix.
+
+    Returns:
+        Matrix: The resulting matrix after subtracting B from A.
+    """
+
     res = []
     for i in range(len(A)):
         row = []
@@ -33,9 +69,18 @@ def matsub(A, B):
         res.append(row)
     return res
 
-def matmul_core(A, B, list=None):
-    """Performs a matrix multiplication on two matrices.
-    \nExploits spatial locality by transposing the second matrix."""
+def matmul_core(A: Matrix, B: Matrix, list=None) -> Matrix:
+    """Performs a single-threaded matrix multiplication on two matrices.
+    
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix. Matrix must be transposed prior to multiplication.
+        list (list, optional): A list to extend the result matrix. Defaults to None.
+    
+    Returns:
+        Matrix: The result of the matrix multiplication.
+    """
+
     res = []
     for i in range(len(A)):
         row = []
@@ -49,8 +94,18 @@ def matmul_core(A, B, list=None):
         return res
     list.extend(res)
 
-def matmul_core_no_trans(A, B, list=None):
-    """Performs a matrix multiplication on two matrices."""
+def matmul_core_no_trans(A: Matrix, B: Matrix, list=None) -> Matrix:
+    """Performs a single-threaded matrix multiplication on two matrices.
+    
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix.
+        list (list, optional): A list to extend the result matrix. Defaults to None.
+    
+    Returns:
+        Matrix: The result of the matrix multiplication.
+    """
+
     res = []
     for r in range(len(A)):
         row = []
@@ -64,8 +119,19 @@ def matmul_core_no_trans(A, B, list=None):
         return res
     list.extend(res)
 
-def matmul_mt(A, B):
-    """(Very basic) multithreaded scheduler for matmul_core."""
+def matmul_mt(A: Matrix, B: Matrix) -> Matrix:
+    """(Very basic) multithreaded scheduler for matrix multiplcation.
+    
+    Avoids recursively spawning processes because Python dosen't support proper threading.
+
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix.
+
+    Returns:
+        Matrix: The result of matrix multiplication.
+    """
+
     len_A = len(A)
     threads = mp.cpu_count()
 
@@ -103,8 +169,19 @@ def matmul_mt(A, B):
     
     return list(res)
 
-def matmul(A, B, mt=True, flip=True):
-    """Performs a matrix multiplication on two matrices. Defaults to multithreaded implementation."""
+def matmul(A: Matrix, B: Matrix, mt: bool =True, flip: bool =True) -> Matrix:
+    """Performs a matrix multiplication on two matrices.
+
+    Args:
+        A (Matrix): The first matrix.
+        B (Matrix): The second matrix.
+        mt (Bool, optional): Flag indicating whether to use multithreaded implementation. Defaults to True.
+        flip (Bool, optional): Flag indicating whether to transpose the second matrix. Defaults to True. Not available for multithreaded implementation.
+
+    Returns:
+        Matrix: The result of the matrix multiplication.
+    """
+
     if mt == True:
         return matmul_mt(A, transpose(B))
     elif flip == True:

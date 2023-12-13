@@ -1,7 +1,22 @@
 # Contains core linalg functions that return vectors.
 
-def outer(v1, v2):
-    """Computes the outer product of two vectors."""
+type Vector = list[float or int]
+type Matrix = list[Vector]
+
+def outer(v1: Vector, v2: Vector) -> Vector:
+    """Computes the outer product of two vectors.
+
+    Args:
+        v1 (list): The first vector.
+        v2 (list): The second vector.
+
+    Returns:
+        Vector: The outer product matrix.
+
+    Raises:
+        ValueError: If the vectors are not of the same length.
+    """
+
     l1 = len(v1)
     l2 = len(v2)
 
@@ -16,8 +31,20 @@ def outer(v1, v2):
 
     return out
 
-def mvmul(A, B):
-    """Matrix vector multiply. Returns a vector."""
+def mvmul(A: Vector or Matrix, B: Vector or Matrix) -> Vector or Matrix:
+    """Matrix-vector/vector-matrix multiplication.
+    
+    Args:
+        A (Vector or Matrix): The matrix represented as a list of lists.
+        B (Vector or Matrix): The vector represented as a list.
+    
+    Returns:
+        For Vector-Matrix Multiplication: A vector represented as a list.
+        For Matrix-Vector Multiplication: A 1-column vector represented as a list of lists.
+    
+    Raises:
+        ValueError: If the matrix and vector are not of compatible sizes.
+    """
     
     mat_first = True
     try: (len(A[0]))

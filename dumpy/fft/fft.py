@@ -4,8 +4,18 @@
 
 import cmath, math
 
-def fft(x):
-    """Radix-2 DIT FFT using list comprehension."""
+type Vec_Complex = list[complex or float or int]
+
+def fft(x: Vec_Complex) -> Vec_Complex:
+    """Radix-2 DIT FFT using list comprehension.
+
+    Args:
+        x (Vec_Complex): The input vector of real or complex numbers.
+
+    Returns:
+        Vec_Complex: The output vector after performing the FFT.
+    """
+
     N = len(x)
     if N <= 1:
         return x
@@ -14,13 +24,21 @@ def fft(x):
     T = [cmath.exp(-2j * math.pi * k / N) * odd[k] for k in range(N // 2)]
     return [even[k] + T[k] for k in range(N // 2)] + [even[k] - T[k] for k in range(N // 2)]
 
-def radix2_fft(x):
-    """Radix-2 DIT FFT using for loops."""
+def fft_for(x: Vec_Complex) -> Vec_Complex:
+    """Radix-2 DIT FFT using for loops.
+
+    Args:
+        x (Vec_Complex): The input vector of real or complex numbers.
+
+    Returns:
+        Vec_Complex: The output vector after performing the FFT.
+    """
+    
     N = len(x)
     if N <= 1:
         return x
-    even = radix2_fft(x[0::2])
-    odd = radix2_fft(x[1::2])
+    even = fft_for(x[0::2])
+    odd = fft_for(x[1::2])
     T = []
     for k in range(N // 2):
         T.append(cmath.exp(-2j * math.pi * k / N) * odd[k])
